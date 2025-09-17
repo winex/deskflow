@@ -90,7 +90,7 @@ int main(int argc, char **argv)
 
   // Create a shared memory segment with a unique key
   // This is to prevent a new instance from running if one is already running
-  QSharedMemory sharedMemory("deskflow-core");
+  QSharedMemory sharedMemory(isServer(argc, argv) ? "deskflow-core-server" : "deskflow-core-client");
 
   // Attempt to attach first and detach in order to clean up stale shm chunks
   // This can happen if the previous instance was killed or crashed
